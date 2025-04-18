@@ -226,7 +226,7 @@
             <input id="userInput" class="message_input" placeholder="请输入..." />
         </div>
         <div class="send_message" id="sendMessageBtn">
-            <img src="IMAGE/发送.jpg" alt="Send" style="width: 100%; height: 100%; border-radius: 10px;">
+            <img src="发送.jpg" alt="Send" style="width: 100%; height: 100%; border-radius: 10px;">
         </div>
     </div>
 
@@ -242,7 +242,7 @@
             if (text.trim() === '') return;
             var $messages = $('#message-list');
             var $message = $('<li class="message ' + side + '"></li>');
-            $message.append('<div class="avatar" style="background-image: url(src/img2.jpg)"></div>');
+            $message.append('<div class="avatar" style="background-image: url(img2.jpg)"></div>');
             $message.append('<div class="text_wrapper"><div class="text">' + text + '</div></div>');
             $messages.append($message);
             $messages.animate({
@@ -253,7 +253,7 @@
         // 模拟 AI 打字的函数
         var sendAiMessage = function(text, delay, callback) {
             var newMessage = $('<li class="message left"></li>');
-            newMessage.append('<div class="avatar" style="background-image: url(IMAGE/机器人.jpeg);"></div>');
+            newMessage.append('<div class="avatar" style="background-image: url(机器人.jpeg);"></div>');
             var textWrapper = $('<div class="text_wrapper"><div class="text"></div></div>');
             newMessage.append(textWrapper);
             $('#message-list').append(newMessage);
@@ -282,27 +282,17 @@
 // 动态生成初始消息
         sendAiMessage("你好！欢迎使用健康咨询AI系统。你可以随时使用本系统进行健康咨询。查询健康资讯、了解健康问题，都可以由该系统完成。请输入任意指令开启对话。", 50, function() {
             // 初始消息发送后，不立即发送“您之前是否了解过气候变化？”
-        });
-        $('#buttonWrapper').hide();
-// 用户输入框发送消息事件
-        $('#sendMessageBtn').click(function() {
-            var userInput = $('#userInput').val(); // 获取用户输入框的内容
-            if (userInput.trim() === "") {
-                alert("请输入内容后再发送！");
-                return;
-            }
-            sendMessage(userInput, 'right'); // 使用sendMessage函数显示用户发送的消息
-
-            // 用户首次发送消息后，发送AI回复“您之前是否了解过气候变化？”
-            sendAiMessage("您之前是否了解过癌症筛查？", 50, function() {
+              sendAiMessage("您之前是否了解过癌症筛查？", 50, function() {
                 // 显示“了解/不了解”按钮
                 $('#message-list').append($('#buttonWrapper'));
                 $('#buttonWrapper').show();
             });
-
-            // 清空输入框
-            $('#userInput').val('');
         });
+        $('#buttonWrapper').hide();
+// 用户输入框发送消息事件
+
+
+
 
 // 按钮点击事件，更新消息并隐藏按钮
         $('#understandBtn').click(function() {
